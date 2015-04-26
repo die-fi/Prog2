@@ -2,14 +2,13 @@ package de.hsa.stockgame.core;
 
 public class ShareDepositAccount extends Asset {
 	
-	private long value;
+
 	private ShareItem[] shareItemArray;
-//	private CashAccount cashAccount;
+
 	
 	public ShareDepositAccount(String name) {
 		shareItemArray=null;
 		this.name=name;
-//		this.cashAccount=new CashAccount(name,50);
 	}
 	
 	public ShareItem[] getShareItemArray() {
@@ -131,7 +130,14 @@ public class ShareDepositAccount extends Asset {
 //	}
 	
 	public long getTotalValue() {
-		return this.value;
+		long tempValue = 0;
+		
+		if (shareItemArray != null) {
+			for (int i=0; shareItemArray.length > i; i++) {
+				tempValue += shareItemArray[i].getTotalValue();
+			}
+		}
+		return tempValue;
 	}
 	
 	public String toString() {
