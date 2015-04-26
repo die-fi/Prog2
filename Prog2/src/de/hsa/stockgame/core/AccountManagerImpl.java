@@ -104,6 +104,20 @@ public class AccountManagerImpl implements AccountManager {
 	@Override
 	public long getAssetValue(String player,Asset asset) {
 		// TODO Auto-generated method stub
+		Player tempPlayer = playerListed(player);
+		if (tempPlayer!=null) {
+			switch (asset) {
+			case 1:
+				return tempPlayer.getCashAccount().getTotalValue();
+			case 2:
+				return tempPlayer.getShareDepositAccount().getTotalValue();
+			default:
+				System.out.println("Asset eingabe unbekannt");
+				break;
+			}
+		}
+		else 
+			System.out.println("Keinen Player mit dem Namen vorhanden");
 		return 0;
 	}
 	
