@@ -10,7 +10,13 @@ public interface AccountManager {
 	void sellShare(String playerName,String shareName, int shareQuantity);
 	
 //	Wert eines Assets eines Mitspielers
-	long getAssetValue(String player,Asset asset);
+	/**
+	 * Gibt den aktuellen Wert des Assets wieder.
+	 * @param player - Name des Spielers
+	 * @param asset - 1 = CashAccount, 2 = Gesamtes ShareDepositeAccount
+	 * @return long - Preis der Aktie
+	 */	
+	long getAssetValue(String player, int asset);
 	
 //	Gesamtwert aller Assets eines Mitspielers
 	long getTotalValue(String player);
