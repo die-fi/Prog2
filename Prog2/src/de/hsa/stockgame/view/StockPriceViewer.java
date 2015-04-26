@@ -25,7 +25,7 @@ public class StockPriceViewer extends JFrame
     public StockPriceViewer()
     {
 //        clockLabel = new JLabel("<html><body>Verfügbare Aktien:<br>");
-    	clockLabel = new JLabel("<html><body>Verfügbare Aktien:<br>");
+    	clockLabel = new JLabel("Lade AktienInterface...");
         add("Center", clockLabel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(300,300);
@@ -59,12 +59,17 @@ public class StockPriceViewer extends JFrame
         private String createText() {
         	
         	Share[] shares=spi.getAllSharesAsSnapShot();
-//        	String output=clockLabel.getText();
-        	String output="<html><body>Verfügbare Aktien:<br>";
-        	for(int i=0;i<shares.length;i++) {
-        		output+=shares[i].toString()+"<br>";
+        	String output = "<html><body><table> <tr><td><b>Aktienname</b></td><td><b>Kurswert</b></td></tr>";
+        	output += getTextForShareArray(shares);
+        	output+="</table></body></html>";
+        	return output;
+        }
+        
+        private String getTextForShareArray(Share[] ShareArray) {        	
+        	String output = "==============";
+        	for(int i=0;i<ShareArray.length;i++) {
+        		output += "<tr><td>" + ShareArray[i].getName() + "</td><td>" + ShareArray[i].getPrice() + "</td></tr>";
         	}
-        	output+="</body></html>";
         	return output;
         }
     }
